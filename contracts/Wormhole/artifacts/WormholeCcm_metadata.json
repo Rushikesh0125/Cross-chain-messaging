@@ -1,0 +1,207 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_wormholeRelayer",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "greeting",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint16",
+						"name": "senderChain",
+						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "GreetingReceived",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "latestGreeting",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "targetChain",
+						"type": "uint16"
+					}
+				],
+				"name": "quoteCrossChainGreeting",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "cost",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "payload",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes[]",
+						"name": "",
+						"type": "bytes[]"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint16",
+						"name": "sourceChain",
+						"type": "uint16"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "receiveWormholeMessages",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "targetChain",
+						"type": "uint16"
+					},
+					{
+						"internalType": "address",
+						"name": "targetAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "greeting",
+						"type": "string"
+					}
+				],
+				"name": "sendMessage",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "wormholeRelayer",
+				"outputs": [
+					{
+						"internalType": "contract IWormholeRelayer",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Wormhole/WormholeCcm.sol": "WormholeCcm"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Wormhole/WormholeCcm.sol": {
+			"keccak256": "0xa10940d64e3ee1291977cf3675c2775d5b454c937d1c720dbbb9c913395534b8",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://7c9deb3a8452f7d2ad804ed55b6059251f840d2f16676485c02f214780679d0f",
+				"dweb:/ipfs/QmVAUuBt2c1NDPStDEp5F512vLEhycPXTKGQf4HuC5rCPW"
+			]
+		},
+		"wormhole-solidity-sdk/Utils.sol": {
+			"keccak256": "0xa8d3f11ba940552d13b7d2ad215a9bea4f7993bcebe8aa2d835268c3c5525411",
+			"license": "Apache 2",
+			"urls": [
+				"bzz-raw://a85ba7b2441de43d15d7ea5567af5d550ae4324c099fb6c5b7e19b9f179998ae",
+				"dweb:/ipfs/QmQepxbnguz9z5QaqMqctc1gY4druEswVnRXTgmQXGJKy2"
+			]
+		},
+		"wormhole-solidity-sdk/interfaces/IWormholeReceiver.sol": {
+			"keccak256": "0x3ba999db8099081accdc924c765ce2dbbaa0bd4ecd29d95a5bd537703740b832",
+			"license": "Apache 2",
+			"urls": [
+				"bzz-raw://af8370ba3663400476871902811004559a28ab6106085b89e508b5d35a4950e6",
+				"dweb:/ipfs/QmPBMBGDsSEYt5u3Yvhddv67RB6UqomJy1jBy1nPEHMdZN"
+			]
+		},
+		"wormhole-solidity-sdk/interfaces/IWormholeRelayer.sol": {
+			"keccak256": "0xa815a64ab0326cad1bc79475838d66f36f8b3e42478edbe61d0c2572c2316ff2",
+			"license": "Apache 2",
+			"urls": [
+				"bzz-raw://3560d50c34358001253b67ac4cb5cbeb2ba822bf159d2aba3d6e9db89e64e26e",
+				"dweb:/ipfs/QmRDT83KeHexLDyT6vauMietym9gLRQFGjzSJUWU7nZMp7"
+			]
+		}
+	},
+	"version": 1
+}
