@@ -3,23 +3,29 @@ pragma solidity ^0.8.13;
 
 import "wormhole-solidity-sdk/interfaces/IWormholeRelayer.sol";
 import "wormhole-solidity-sdk/interfaces/IWormholeReceiver.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract WormholeCcm is IWormholeReceiver, Ownable {
+contract WormholeCcm is IWormholeReceiver {
     event GreetingReceived(string greeting, uint16 senderChain, address sender);
 
-    uint256 constant GAS_LIMIT = 50_000;
+    uint256 constant GAS_LIMIT = 200_000;
     uint16 public _srcChainId;
 
     IWormholeRelayer public immutable wormholeRelayer;
 
     string public latestGreeting;
+    address public owner;
 
-    mapping(uint16 chainId => address peerContract) private peerContracts;
+    mapping(uint16 => bytes32) private peerContracts;
 
-    constructor(address _wormholeRelayer, uint16 srcChainId) Ownable(msg.sender){
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+
+    constructor(address _wormholeRelayer, uint16 srcChainId){
         wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
         _srcChainId = srcChainId;
+        owner = msg.sender;
     }
 
     function quoteCrossChainGreeting(
@@ -32,8 +38,8 @@ contract WormholeCcm is IWormholeReceiver, Ownable {
         );
     }
 
-    function setPeer(uint16 chainId, address peerContract) public onlyOwner{
-        require(peerContract != address(0));
+    function setPeer(uint16 chainId, bytes32 peerContract) public onlyOwner{
+        require(peerContract != bytes32(0));
         peerContracts[chainId] = peerContract;
     }
 
@@ -44,7 +50,6 @@ contract WormholeCcm is IWormholeReceiver, Ownable {
     ) public payable {
         uint256 cost = quoteCrossChainGreeting(targetChain);
         require(msg.value == cost);
-        require(peerContracts[targetChain] == targetAddress);
         wormholeRelayer.sendPayloadToEvm{value: cost}(
             targetChain,
             targetAddress,
@@ -56,15 +61,16 @@ contract WormholeCcm is IWormholeReceiver, Ownable {
         );
     }
 
+
     function receiveWormholeMessages(
         bytes memory payload,
         bytes[] memory, // additionalVaas
-        bytes32 sender, // address that called 'sendPayloadToEvm' (HelloWormhole contract address)
+        bytes32 sender,
         uint16 sourceChain,
-        bytes32 // unique identifier of delivery
+        bytes32 /*deliveryHash*/
     ) public payable override {
         require(msg.sender == address(wormholeRelayer), "Only relayer allowed");
-        require(peerContracts[sourceChain] == address(uint160(uint256(sender))));
+        require(peerContracts[sourceChain] == sender);
 
         // Parse the payload and do the corresponding actions!
         (string memory greeting, address senderAddress) = abi.decode(

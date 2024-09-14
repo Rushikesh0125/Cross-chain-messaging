@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.27+commit.40a35a09"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -20,28 +20,6 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"name": "OwnableInvalidOwner",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "OwnableUnauthorizedAccount",
-				"type": "error"
 			},
 			{
 				"anonymous": false,
@@ -66,25 +44,6 @@
 					}
 				],
 				"name": "GreetingReceived",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "previousOwner",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "OwnershipTransferred",
 				"type": "event"
 			},
 			{
@@ -179,13 +138,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint16",
@@ -216,25 +168,12 @@
 						"type": "uint16"
 					},
 					{
-						"internalType": "address",
+						"internalType": "bytes32",
 						"name": "peerContract",
-						"type": "address"
+						"type": "bytes32"
 					}
 				],
 				"name": "setPeer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "transferOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -254,30 +193,8 @@
 			}
 		],
 		"devdoc": {
-			"errors": {
-				"OwnableInvalidOwner(address)": [
-					{
-						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
-					}
-				],
-				"OwnableUnauthorizedAccount(address)": [
-					{
-						"details": "The caller account is not authorized to perform an operation."
-					}
-				]
-			},
 			"kind": "dev",
-			"methods": {
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
@@ -290,7 +207,7 @@
 		"compilationTarget": {
 			"contracts/Wormhole/WormholeCcm.sol": "WormholeCcm"
 		},
-		"evmVersion": "cancun",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -302,28 +219,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/access/Ownable.sol": {
-			"keccak256": "0xde13f6ab310a659b9732f7f7ea3eed7c4d9925cc72e77e6554b2126563a143f0",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://2176f1c5e871613bd6502558cc98d268e92167dcd546d15941587a670a48d4eb",
-				"dweb:/ipfs/QmboYR7jbENha8ahFbWeHu2pHr5jjA9PuDzRDJHLvGDCBh"
-			]
-		},
-		"@openzeppelin/contracts/utils/Context.sol": {
-			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
-				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
-			]
-		},
 		"contracts/Wormhole/WormholeCcm.sol": {
-			"keccak256": "0x8cf25fd763b57cb597c95106cc818ac18013ec899e125e32141759b3b2d30170",
+			"keccak256": "0x17182e264d22a127dc1518920ee77f1887eb81d13721b8eb21bedbca4261ed22",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d088b52292a58ec1f23b39211c097c936f23ab0f7d16ef26249ec0040784f01c",
-				"dweb:/ipfs/QmeR8aWTaC74fCKVsNGcsfe7We3eVxaMm68zULFZhXMcpq"
+				"bzz-raw://17767e61fb8daf020192d5694bba717f24b0049dbfa24babfa8320420a8e7ccc",
+				"dweb:/ipfs/QmS2krdp1pNbhYtutYExp9gxsPvkNeEMUSZmqjEq4RRv4Z"
 			]
 		},
 		"wormhole-solidity-sdk/Utils.sol": {
